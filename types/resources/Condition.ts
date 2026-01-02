@@ -4,7 +4,8 @@ import { Reference, CodeableConcept, Age, Annotation } from '../base';
 
 export const CONDITION_SYSTEMS = {
     CLINICAL: "http://terminology.hl7.org/CodeSystem/condition-clinical",
-    VERIFICATION: "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+    VERIFICATION: "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+    SEVERITY: "http://snomed.info/sct"
 };
 
 export const CONDITION_CLINICAL_STATUSES = [
@@ -25,6 +26,12 @@ export const CONDITION_VERIFICATION_STATUSES = [
     { code: 'entered-in-error', label: 'Entered in Error' },
 ];
 
+export const CONDITION_SEVERITY_STATUSES = [
+    { code: '255604002', label: 'Mild', display: 'Mild' },
+    { code: '6736007', label: 'Moderate', display: 'Moderate' },
+    { code: '24484000', label: 'Severe', display: 'Severe' },
+];
+
 // --- Interface ---
 
 /**
@@ -39,7 +46,6 @@ export interface Condition {
     verificationStatus: CodeableConcept; // Required
 
     // Categorization
-    category?: CodeableConcept[];
     severity?: CodeableConcept;
     code: CodeableConcept; // Required
 
@@ -56,6 +62,5 @@ export interface Condition {
 
     // Additional
     recorder?: Reference;
-    assenter?: Reference;
     note?: Annotation[];
 }

@@ -4,7 +4,6 @@
 export interface Patient {
     resourceType: 'Patient';
     id?: string;
-    active?: boolean;
     name?: {
         use?: 'official' | 'usual' | 'nickname';
         text?: string;
