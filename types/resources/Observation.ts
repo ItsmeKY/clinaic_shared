@@ -1,4 +1,4 @@
-import { CodeableConcept, Reference, Annotation } from '../base';
+import type { CodeableConcept, Reference, Annotation } from '../base';
 
 export interface ReferenceRange {
     low?: { value: number; unit?: string; system?: string; code?: string };

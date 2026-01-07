@@ -1,4 +1,4 @@
-import { Reference, CodeableConcept, Period, Annotation } from '../base';
+import type { Reference, CodeableConcept, Period, Annotation } from '../base';
 
 // --- Systems & Value Sets ---
 
