@@ -1,4 +1,4 @@
-import { Reference, Period, Coding } from '../base';
+import type { Reference, Period, Coding, CodeableConcept } from '../base';
 
 // --- Systems & Value Sets ---
 
@@ -36,8 +36,13 @@ export interface Encounter {
     status: 'planned' | 'arrived' | 'triaged' | 'in-progress' | 'onleave' | 'finished' | 'cancelled';
 
     class: Coding; // Required (ActCode)
+    type?: CodeableConcept[]; // Specific type of encounter (e.g. Consult, Checkup)
+    serviceType?: CodeableConcept; // Broad category of service (e.g. Cardiology)
+    priority?: CodeableConcept; // Urgency
     subject: Reference; // Required
     period: Period; // Required
+    reasonCode?: CodeableConcept[]; // Reason for encounter
+    participant?: { type?: CodeableConcept[], individual?: Reference }[]; // Practitioners involved
 
     // Additional fields might be added here if needed, but keeping it strict as requested.
 }

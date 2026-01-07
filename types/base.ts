@@ -47,3 +47,23 @@ export const COMMON_SYSTEMS = {
     RXNORM: "http://www.nlm.nih.gov/research/umls/rxnorm",
     CONTACT_POINT: "phone"
 };
+
+export interface Dosage {
+    sequence?: number;
+    text?: string;
+    patientInstruction?: string;
+    timing?: {
+        code?: CodeableConcept;
+    };
+    route?: CodeableConcept;
+    method?: CodeableConcept;
+    doseAndRate?: {
+        type?: CodeableConcept;
+        doseQuantity?: {
+            value: number;
+            unit: string;
+            system?: string;
+            code?: string;
+        }
+    }[];
+}
