@@ -1,4 +1,4 @@
-import { Reference, CodeableConcept, Age, Annotation } from '../base';
+import type { Reference, CodeableConcept, Age, Annotation } from '../base';
 
 // --- Systems & Value Sets ---
 
@@ -51,7 +51,7 @@ export interface Condition {
 
     // Subjects
     subject: Reference; // Required
-    encounter: Reference; // Required
+    encounter?: Reference; // Required
 
     // Dates
     onsetDateTime?: string;
