@@ -4,7 +4,7 @@ import type { Reference, Period, Coding, CodeableConcept } from '../base';
 
 export const ENCOUNTER_SYSTEMS = {
     ACT_CODE: "http://terminology.hl7.org/CodeSystem/v3-ActCode"
-};
+} as const;
 
 export const ENCOUNTER_CLASSES = [
     { code: 'AMB', display: 'ambulatory', label: 'Ambulatory' },
@@ -12,7 +12,8 @@ export const ENCOUNTER_CLASSES = [
     { code: 'EMER', display: 'emergency', label: 'Emergency' },
     { code: 'VR', display: 'virtual', label: 'Virtual' },
     { code: 'HH', display: 'home health', label: 'Home Health' },
-];
+] as const;
+export type EncounterClassCode = typeof ENCOUNTER_CLASSES[number]['code'];
 
 export const ENCOUNTER_STATUSES = [
     { value: 'planned', label: 'Planned' },
@@ -22,7 +23,8 @@ export const ENCOUNTER_STATUSES = [
     { value: 'onleave', label: 'On Leave' },
     { value: 'finished', label: 'Finished' },
     { value: 'cancelled', label: 'Cancelled' },
-];
+] as const;
+export type EncounterStatus = typeof ENCOUNTER_STATUSES[number]['value'];
 
 // --- Interface ---
 
@@ -33,7 +35,7 @@ export interface Encounter {
     resourceType: 'Encounter';
     id?: string;
 
-    status: 'planned' | 'arrived' | 'triaged' | 'in-progress' | 'onleave' | 'finished' | 'cancelled';
+    status: EncounterStatus;
 
     class: Coding; // Required (ActCode)
     type?: CodeableConcept[]; // Specific type of encounter (e.g. Consult, Checkup)

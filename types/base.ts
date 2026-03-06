@@ -40,13 +40,30 @@ export interface Annotation {
     text: string;
 }
 
+export interface Quantity {
+    value?: number;
+    comparator?: '<' | '<=' | '>=' | '>';
+    unit?: string;
+    system?: string;
+    code?: string;
+}
+
+export interface Range {
+    low?: Quantity;
+    high?: Quantity;
+}
+
 // Common Standard Code Systems
 export const COMMON_SYSTEMS = {
     SNOMED_CT: "http://snomed.info/sct",
     LOINC: "http://loinc.org",
     RXNORM: "http://www.nlm.nih.gov/research/umls/rxnorm",
-    CONTACT_POINT: "phone"
-};
+    ICD_10: "http://hl7.org/fhir/sid/icd-10",
+    CONTACT_POINT: "phone",
+    GENDER: "http://hl7.org/fhir/administrative-gender"
+} as const;
+
+export type CommonSystem = typeof COMMON_SYSTEMS[keyof typeof COMMON_SYSTEMS];
 
 export interface Dosage {
     sequence?: number;

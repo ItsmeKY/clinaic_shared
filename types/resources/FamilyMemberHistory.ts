@@ -11,7 +11,7 @@ export interface FamilyMemberHistoryCondition {
 export interface FamilyMemberHistory {
     resourceType: 'FamilyMemberHistory';
     id?: string;
-    status: 'partial' | 'completed' | 'entered-in-error' | 'health-unknown';
+    status: FamilyHistoryStatus;
     patient: Reference;
     date?: string;
     name?: string;
@@ -31,7 +31,8 @@ export const FAMILY_HISTORY_STATUSES = [
     { code: 'completed', label: 'Completed' },
     { code: 'entered-in-error', label: 'Entered in Error' },
     { code: 'health-unknown', label: 'Health Unknown' }
-];
+] as const;
+export type FamilyHistoryStatus = typeof FAMILY_HISTORY_STATUSES[number]['code'];
 
 export const RELATIONSHIP_CODES = [
     { code: 'FTH', display: 'father', system: 'http://terminology.hl7.org/CodeSystem/v3-RoleCode' },
@@ -42,4 +43,5 @@ export const RELATIONSHIP_CODES = [
     { code: 'GRMTH', display: 'grandmother', system: 'http://terminology.hl7.org/CodeSystem/v3-RoleCode' },
     { code: 'UNCLE', display: 'uncle', system: 'http://terminology.hl7.org/CodeSystem/v3-RoleCode' },
     { code: 'AUNT', display: 'aunt', system: 'http://terminology.hl7.org/CodeSystem/v3-RoleCode' }
-];
+] as const;
+export type RelationshipCode = typeof RELATIONSHIP_CODES[number]['code'];

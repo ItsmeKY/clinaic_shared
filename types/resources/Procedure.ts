@@ -5,7 +5,7 @@ import type { Reference, CodeableConcept, Period, Annotation } from '../base';
 export const PROCEDURE_SYSTEMS = {
     STATUS: "http://hl7.org/fhir/event-status",
     CODE: "http://snomed.info/sct" // Common for procedures
-};
+} as const;
 
 export const PROCEDURE_STATUSES = [
     { code: 'preparation', label: 'Preparation' },
@@ -16,7 +16,8 @@ export const PROCEDURE_STATUSES = [
     { code: 'completed', label: 'Completed' },
     { code: 'entered-in-error', label: 'Entered in Error' },
     { code: 'unknown', label: 'Unknown' },
-];
+] as const;
+export type ProcedureStatus = typeof PROCEDURE_STATUSES[number]['code'];
 
 // --- Interface ---
 
@@ -29,7 +30,7 @@ export interface Procedure {
     id?: string;
 
     // Identifiers & Status
-    status: 'preparation' | 'in-progress' | 'not-done' | 'on-hold' | 'stopped' | 'completed' | 'entered-in-error' | 'unknown'; // Required
+    status: ProcedureStatus; // Required
     statusReason?: CodeableConcept;
 
     // Categorization

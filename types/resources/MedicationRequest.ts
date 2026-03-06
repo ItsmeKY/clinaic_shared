@@ -7,7 +7,7 @@ export const MEDICATION_REQUEST_SYSTEMS = {
     INTENT: "http://hl7.org/fhir/CodeSystem/medicationrequest-intent",
     PRIORITY: "http://hl7.org/fhir/CodeSystem/request-priority",
     MEDICATION: "http://www.nlm.nih.gov/research/umls/rxnorm"
-};
+} as const;
 
 export const MEDICATION_REQUEST_STATUSES = [
     { value: 'active', label: 'Active' },
@@ -18,7 +18,8 @@ export const MEDICATION_REQUEST_STATUSES = [
     { value: 'stopped', label: 'Stopped' },
     { value: 'draft', label: 'Draft' },
     { value: 'unknown', label: 'Unknown' },
-];
+] as const;
+export type MedicationRequestStatus = typeof MEDICATION_REQUEST_STATUSES[number]['value'];
 
 export const MEDICATION_REQUEST_INTENTS = [
     { value: 'proposal', label: 'Proposal' },
@@ -29,14 +30,16 @@ export const MEDICATION_REQUEST_INTENTS = [
     { value: 'filler-order', label: 'Filler Order' },
     { value: 'instance-order', label: 'Instance Order' },
     { value: 'option', label: 'Option' },
-];
+] as const;
+export type MedicationRequestIntent = typeof MEDICATION_REQUEST_INTENTS[number]['value'];
 
 export const MEDICATION_REQUEST_PRIORITIES = [
     { value: 'routine', label: 'Routine' },
     { value: 'urgent', label: 'Urgent' },
     { value: 'asap', label: 'ASAP' },
     { value: 'stat', label: 'STAT' },
-];
+] as const;
+export type MedicationRequestPriority = typeof MEDICATION_REQUEST_PRIORITIES[number]['value'];
 
 // --- Interface ---
 
@@ -47,9 +50,9 @@ export interface MedicationRequest {
     resourceType: 'MedicationRequest';
     id?: string;
 
-    status: 'active' | 'on-hold' | 'cancelled' | 'completed' | 'entered-in-error' | 'stopped' | 'draft' | 'unknown';
-    intent: 'proposal' | 'plan' | 'order' | 'original-order' | 'reflex-order' | 'filler-order' | 'instance-order' | 'option';
-    priority?: 'routine' | 'urgent' | 'asap' | 'stat';
+    status: MedicationRequestStatus;
+    intent: MedicationRequestIntent;
+    priority?: MedicationRequestPriority;
 
     // The medication being requested
     medicationCodeableConcept: CodeableConcept; // Required if medicationReference is not used
