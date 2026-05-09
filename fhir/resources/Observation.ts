@@ -1,4 +1,4 @@
-import type { CodeableConcept, Reference, Annotation, Quantity } from '../base';
+import type { CodeableConcept, Reference, Annotation, Quantity, Meta } from '../base';
 
 export interface ReferenceRange {
     low?: { value: number; unit?: string; system?: string; code?: string };
@@ -11,6 +11,7 @@ export interface ReferenceRange {
 
 export interface Observation {
     resourceType: 'Observation';
+    meta?: Meta;
     id?: string;
     status: ObservationStatus;
     category: CodeableConcept[];

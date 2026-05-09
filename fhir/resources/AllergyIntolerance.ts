@@ -1,4 +1,4 @@
-import type { Reference, CodeableConcept, Annotation, Period, Age, Range } from '../base';
+import type { Reference, CodeableConcept, Annotation, Period, Age, Range, Meta } from '../base';
 
 // --- Systems & Value Sets ---
 
@@ -60,6 +60,7 @@ export interface AllergyIntoleranceReaction {
 
 export interface AllergyIntolerance {
     resourceType: 'AllergyIntolerance';
+    meta?: Meta;
     id?: string;
 
     clinicalStatus?: CodeableConcept;

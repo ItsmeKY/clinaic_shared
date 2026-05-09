@@ -1,4 +1,4 @@
-import type { Reference, CodeableConcept, Coding, Dosage } from '../base';
+import type { Reference, CodeableConcept, Dosage, Meta } from '../base';
 
 // --- Systems & Value Sets ---
 
@@ -48,6 +48,7 @@ export type MedicationRequestPriority = typeof MEDICATION_REQUEST_PRIORITIES[num
  */
 export interface MedicationRequest {
     resourceType: 'MedicationRequest';
+    meta?: Meta;
     id?: string;
 
     status: MedicationRequestStatus;

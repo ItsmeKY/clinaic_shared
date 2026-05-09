@@ -53,6 +53,29 @@ export interface Range {
     high?: Quantity;
 }
 
+export interface Meta {
+    security?: Coding[];
+    tag?: Coding[];
+    profile?: string[];
+    lastUpdated?: string;
+    versionId?: string;
+}
+
+// HL7 confidentiality system — used for patient-PIN-gated sensitive resources
+export const CONFIDENTIALITY_SYSTEM = 'http://terminology.hl7.org/CodeSystem/v3-Confidentiality';
+
+/** Returns a meta object that marks a FHIR resource as Very Restricted (requires patient PIN). */
+export const buildSensitiveMeta = (): Meta => ({
+    security: [{ system: CONFIDENTIALITY_SYSTEM, code: 'V', display: 'Very Restricted' }],
+});
+
+/** Returns true if a FHIR resource has a V or R confidentiality security label. */
+export const isSensitiveResource = (resource: { meta?: Meta }): boolean => {
+    return (resource.meta?.security ?? []).some(
+        (c) => c.system === CONFIDENTIALITY_SYSTEM && (c.code === 'V' || c.code === 'R'),
+    );
+};
+
 // Common Standard Code Systems
 export const COMMON_SYSTEMS = {
     SNOMED_CT: "http://snomed.info/sct",

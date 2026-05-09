@@ -1,4 +1,4 @@
-import type { Reference, Period, Coding, CodeableConcept } from '../base';
+import type { Reference, Period, Coding, CodeableConcept, Meta } from '../base';
 
 // --- Systems & Value Sets ---
 
@@ -33,6 +33,7 @@ export type EncounterStatus = typeof ENCOUNTER_STATUSES[number]['value'];
  */
 export interface Encounter {
     resourceType: 'Encounter';
+    meta?: Meta;
     id?: string;
 
     status: EncounterStatus;

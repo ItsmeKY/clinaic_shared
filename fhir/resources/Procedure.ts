@@ -1,4 +1,4 @@
-import type { Reference, CodeableConcept, Period, Annotation } from '../base';
+import type { Reference, CodeableConcept, Period, Annotation, Meta } from '../base';
 
 // --- Systems & Value Sets ---
 
@@ -27,6 +27,7 @@ export type ProcedureStatus = typeof PROCEDURE_STATUSES[number]['code'];
  */
 export interface Procedure {
     resourceType: 'Procedure';
+    meta?: Meta;
     id?: string;
 
     // Identifiers & Status

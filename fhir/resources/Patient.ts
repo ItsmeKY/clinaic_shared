@@ -31,6 +31,7 @@ export type PatientTelecomUse = typeof PATIENT_TELECOM_USES[number]['code'];
  */
 export interface Patient {
     resourceType: 'Patient';
+    meta?: Meta;
     id?: string;
     name?: {
         use?: PatientNameUse;

@@ -1,4 +1,4 @@
-import type { Reference, CodeableConcept, Annotation } from '../base';
+import type { Reference, CodeableConcept, Annotation, Meta } from '../base';
 
 export interface FamilyMemberHistoryCondition {
     code: CodeableConcept;
@@ -10,6 +10,7 @@ export interface FamilyMemberHistoryCondition {
 
 export interface FamilyMemberHistory {
     resourceType: 'FamilyMemberHistory';
+    meta?: Meta;
     id?: string;
     status: FamilyHistoryStatus;
     patient: Reference;

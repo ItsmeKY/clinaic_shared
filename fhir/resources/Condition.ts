@@ -1,4 +1,4 @@
-import type { Reference, CodeableConcept, Age, Annotation } from '../base';
+import type { Reference, CodeableConcept, Age, Annotation, Meta } from '../base';
 
 // --- Systems & Value Sets ---
 
@@ -42,6 +42,7 @@ export type ConditionSeverityStatus = typeof CONDITION_SEVERITY_STATUSES[number]
  */
 export interface Condition {
     resourceType: 'Condition';
+    meta?: Meta;
     id?: string;
 
     // Identifiers & Status
