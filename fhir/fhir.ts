@@ -10,6 +10,7 @@ export * from './resources/MedicationRequest';
 export * from './resources/Observation';
 export * from './resources/Patient';
 export * from './resources/Procedure';
+export * from './resources/DocumentReference';
 
 // --- App-level Custom Types ---
 export * from './custom';
