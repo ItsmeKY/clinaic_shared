@@ -1,3 +1,5 @@
+import type { Meta } from '../base';
+
 export const PATIENT_GENDERS = [
     { code: 'male', label: 'Male' },
     { code: 'female', label: 'Female' },
