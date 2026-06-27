@@ -1,10 +1,8 @@
-import type { Reference, CodeableConcept, Period, Annotation, Meta } from '../base';
-
-// --- Systems & Value Sets ---
+import type { Reference, CodeableConcept, Annotation, Meta } from '../base';
 
 export const PROCEDURE_SYSTEMS = {
     STATUS: "http://hl7.org/fhir/event-status",
-    CODE: "http://snomed.info/sct" // Common for procedures
+    CODE: "http://snomed.info/sct"
 } as const;
 
 export const PROCEDURE_STATUSES = [
@@ -19,45 +17,14 @@ export const PROCEDURE_STATUSES = [
 ] as const;
 export type ProcedureStatus = typeof PROCEDURE_STATUSES[number]['code'];
 
-// --- Interface ---
-
-/**
- * FHIR Procedure Resource
- * https://www.hl7.org/fhir/procedure.html
- */
 export interface Procedure {
     resourceType: 'Procedure';
     meta?: Meta;
     id?: string;
-
-    // Identifiers & Status
-    status: ProcedureStatus; // Required
-    statusReason?: CodeableConcept;
-
-    // Categorization
-    code?: CodeableConcept; // Specific procedure code
-
-    // Subjects
-    subject: Reference; // Required (Patient)
-    encounter?: Reference; // Encounter context
-
-    // Timing
+    status: ProcedureStatus;
+    code?: CodeableConcept;
+    subject: Reference;
+    encounter?: Reference;
     performedDateTime?: string;
-    performedPeriod?: Period;
-
-    // Participants (simplified)
-    recorder?: Reference;
-    asserter?: Reference;
-    performer?: {
-        function?: CodeableConcept;
-        actor: Reference;
-        onBehalfOf?: Reference;
-    }[];
-
-    // Whys & Wheres
-    reasonCode?: CodeableConcept[];
-    bodySite?: CodeableConcept[];
-    outcome?: CodeableConcept;
-
     note?: Annotation[];
 }

@@ -1,6 +1,4 @@
-import type { Reference, CodeableConcept, Age, Annotation, Meta } from '../base';
-
-// --- Systems & Value Sets ---
+import type { Reference, CodeableConcept, Annotation, Meta } from '../base';
 
 export const CONDITION_SYSTEMS = {
     CLINICAL: "http://terminology.hl7.org/CodeSystem/condition-clinical",
@@ -35,36 +33,16 @@ export const CONDITION_SEVERITY_STATUSES = [
 ] as const;
 export type ConditionSeverityStatus = typeof CONDITION_SEVERITY_STATUSES[number]['code'];
 
-// --- Interface ---
-
-/**
- * FHIR Condition Resource
- */
 export interface Condition {
     resourceType: 'Condition';
     meta?: Meta;
     id?: string;
-
-    // Identifiers & Status
-    clinicalStatus: CodeableConcept; // Required
-    verificationStatus: CodeableConcept; // Required
-
-    // Categorization
+    clinicalStatus: CodeableConcept;
+    verificationStatus: CodeableConcept;
     severity?: CodeableConcept;
-    code: CodeableConcept; // Required
-
-    // Subjects
-    subject: Reference; // Required
-    encounter?: Reference; // Required
-
-    // Dates
+    code: CodeableConcept;
+    subject: Reference;
+    encounter?: Reference;
     onsetDateTime?: string;
-    onsetAge?: Age;
-    abatementDateTime?: string;
-    abatementAge?: Age;
-    recordedDate?: string;
-
-    // Additional
-    recorder?: Reference;
     note?: Annotation[];
 }

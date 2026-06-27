@@ -1,8 +1,8 @@
-import type { Reference, CodeableConcept, Meta } from '../base';
+import type { Reference, Meta } from '../base';
 
 export interface DocumentAttachment {
     contentType?: string;
-    data?: string; // base64 encoded content
+    data?: string; // base64 encoded
     title?: string;
     creation?: string;
 }
@@ -27,14 +27,3 @@ export interface DocumentReference {
     content: DocumentReferenceContent[];
     context?: DocumentReferenceContext;
 }
-
-export const DOCUMENT_TYPES = [
-    { code: '11488-4', display: 'Consultation note', system: 'http://loinc.org' },
-    { code: '34117-2', display: 'History & physical note', system: 'http://loinc.org' },
-    { code: '18842-5', display: 'Discharge summary', system: 'http://loinc.org' },
-    { code: '11506-3', display: 'Progress note', system: 'http://loinc.org' },
-    { code: '57133-1', display: 'Referral note', system: 'http://loinc.org' },
-    { code: '34109-9', display: 'Evaluation note', system: 'http://loinc.org' },
-    { code: '47039-3', display: 'Inpatient admission history', system: 'http://loinc.org' },
-    { code: '28636-9', display: 'Initial evaluation note', system: 'http://loinc.org' },
-] as const;

@@ -1,14 +1,5 @@
 import type { CodeableConcept, Reference, Annotation, Quantity, Meta } from '../base';
 
-export interface ReferenceRange {
-    low?: { value: number; unit?: string; system?: string; code?: string };
-    high?: { value: number; unit?: string; system?: string; code?: string };
-    type?: CodeableConcept;
-    appliesTo?: CodeableConcept[];
-    age?: { low?: number; high?: number };
-    text?: string;
-}
-
 export interface Observation {
     resourceType: 'Observation';
     meta?: Meta;
@@ -19,13 +10,8 @@ export interface Observation {
     subject: Reference;
     encounter: Reference;
     effectiveDateTime?: string;
-
-
-    // value[x] - FHIR supports multiple value types
     valueString?: string;
     valueQuantity?: Quantity;
-
-    referenceRange?: ReferenceRange[];
     note?: Annotation[];
 }
 
@@ -46,8 +32,6 @@ export const OBSERVATION_Categories = [
     { code: 'laboratory', display: 'Laboratory' },
     { code: 'exam', display: 'Exam' },
     { code: 'social-history', display: 'Social History' },
-
-    // Extended
     { code: 'symptom', display: 'Symptom' },
     { code: 'negative-symptom', display: 'Negative Symptom' },
     { code: 'chief-complaint', display: 'Chief Complaint' }
@@ -55,14 +39,11 @@ export const OBSERVATION_Categories = [
 export type ObservationCategoryCode = typeof OBSERVATION_Categories[number]['code'];
 
 export const OBSERVATION_SYSTEMS = {
-    // Using LOINC for observations is standard, but user uses SNOMED often. 
-    // I'll stick to a common one or just label it generic.
     CODE: 'http://snomed.info/sct',
-    CATEGORY: 'http://hl7.org/fhir/observation-category', // Base, extended in app logic
-    UNIT: 'http://unitsofmeasure.org' // We are using ucum units but the system name is arbitary, we set it
+    CATEGORY: 'http://hl7.org/fhir/observation-category',
+    UNIT: 'http://unitsofmeasure.org'
 } as const;
 
-// Common UCUM units for Observations
 export const COMMON_UCUM_UNITS = [
     { label: 'mg/dL', code: 'mg/dL' },
     { label: 'mmol/L', code: 'mmol/L' },

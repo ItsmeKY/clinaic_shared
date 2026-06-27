@@ -1,8 +1,1 @@
-/**
- * Custom Clinaic specific types
- */
-
-// Example placeholder
-export interface CustomTypeExample {
-    customField: string;
-}
+// Clinaic app-specific types (extend as needed)

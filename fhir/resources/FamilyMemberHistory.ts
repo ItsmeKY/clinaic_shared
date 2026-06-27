@@ -2,10 +2,7 @@ import type { Reference, CodeableConcept, Annotation, Meta } from '../base';
 
 export interface FamilyMemberHistoryCondition {
     code: CodeableConcept;
-    outcome?: CodeableConcept;
     contributedToDeath?: boolean;
-    onsetAge?: { value: number; unit: string; system: string; code: string };
-    note?: Annotation[];
 }
 
 export interface FamilyMemberHistory {
@@ -19,10 +16,7 @@ export interface FamilyMemberHistory {
     relationship: CodeableConcept;
     sex?: CodeableConcept;
     bornDate?: string;
-    ageAge?: { value: number; unit: string; system: string; code: string };
     deceasedBoolean?: boolean;
-    deceasedDate?: string;
-    reasonCode?: CodeableConcept[];
     note?: Annotation[];
     condition?: FamilyMemberHistoryCondition[];
 }
