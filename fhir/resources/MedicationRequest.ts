@@ -1,7 +1,5 @@
 import type { Reference, CodeableConcept, Dosage, Meta } from '../base';
 
-// --- Systems & Value Sets ---
-
 export const MEDICATION_REQUEST_SYSTEMS = {
     STATUS: "http://hl7.org/fhir/CodeSystem/medicationrequest-status",
     INTENT: "http://hl7.org/fhir/CodeSystem/medicationrequest-intent",
@@ -41,35 +39,18 @@ export const MEDICATION_REQUEST_PRIORITIES = [
 ] as const;
 export type MedicationRequestPriority = typeof MEDICATION_REQUEST_PRIORITIES[number]['value'];
 
-// --- Interface ---
-
-/**
- * FHIR MedicationRequest Resource
- */
 export interface MedicationRequest {
     resourceType: 'MedicationRequest';
     meta?: Meta;
     id?: string;
-
     status: MedicationRequestStatus;
     intent: MedicationRequestIntent;
     priority?: MedicationRequestPriority;
-
-    // The medication being requested
-    medicationCodeableConcept: CodeableConcept; // Required if medicationReference is not used
-
-    subject: Reference; // Required (Patient)
-    encounter?: Reference; // Optional (Encounter context)
-
-    authoredOn?: string; // DateTime
-    requester?: Reference; // Practitioner
-
-    // Instructions
+    medicationCodeableConcept: CodeableConcept;
+    subject: Reference;
+    encounter?: Reference;
+    authoredOn?: string;
     dosageInstruction?: Dosage[];
-
-    // Reasons
-    reasonCode?: CodeableConcept[];
-    reasonReference?: Reference[]; // Condition or Observation that triggered this request
-
+    reasonReference?: Reference[];
     note?: { text: string }[];
 }

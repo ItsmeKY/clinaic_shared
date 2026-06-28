@@ -1,6 +1,4 @@
-import type { Reference, Period, Coding, CodeableConcept, Meta } from '../base';
-
-// --- Systems & Value Sets ---
+import type { Reference, Period, Coding, Meta } from '../base';
 
 export const ENCOUNTER_SYSTEMS = {
     ACT_CODE: "http://terminology.hl7.org/CodeSystem/v3-ActCode"
@@ -26,26 +24,12 @@ export const ENCOUNTER_STATUSES = [
 ] as const;
 export type EncounterStatus = typeof ENCOUNTER_STATUSES[number]['value'];
 
-// --- Interface ---
-
-/**
- * FHIR Encounter Resource
- */
 export interface Encounter {
     resourceType: 'Encounter';
     meta?: Meta;
     id?: string;
-
     status: EncounterStatus;
-
-    class: Coding; // Required (ActCode)
-    type?: CodeableConcept[]; // Specific type of encounter (e.g. Consult, Checkup)
-    serviceType?: CodeableConcept; // Broad category of service (e.g. Cardiology)
-    priority?: CodeableConcept; // Urgency
-    subject: Reference; // Required
-    period: Period; // Required
-    reasonCode?: CodeableConcept[]; // Reason for encounter
-    participant?: { type?: CodeableConcept[], individual?: Reference }[]; // Practitioners involved
-
-    // Additional fields might be added here if needed, but keeping it strict as requested.
+    class: Coding;
+    subject: Reference;
+    period: Period;
 }
